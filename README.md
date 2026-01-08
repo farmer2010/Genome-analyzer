@@ -10,6 +10,6 @@
 ## Примеры визуализации:
 
 ![](https://github.com/farmer2010/Genome-analyzer/blob/main/images/colony11.png)
-![]()
-![]()
-![]()
+![](https://github.com/farmer2010/Genome-analyzer/blob/main/images/colony22.png)
+![](https://github.com/farmer2010/Genome-analyzer/blob/main/images/colony6.png)
+![](https://github.com/farmer2010/Genome-analyzer/blob/main/images/grid.png)
