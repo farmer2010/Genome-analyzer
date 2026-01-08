@@ -9,7 +9,7 @@
 
 ## Примеры визуализации:
 
-![]()
+![](https://github.com/farmer2010/Genome-analyzer/blob/main/images/colony11.png)
 ![]()
 ![]()
 ![]()
