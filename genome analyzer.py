@@ -2,7 +2,7 @@ import pyperclip
 
 genome_length = 64
 
-file = open("D:\projects\Cyber Biology 2\Cyber Biology 2 Pro\saved objects\colony2.dat")
+file = open("D:\projects\Cyber Biology 2\Cyber Biology 2 Pro\saved objects\colony21.dat")
 text = file.readline().split(" ")
 file.close()
 
@@ -256,39 +256,45 @@ def translate(commands_data):
     for i in range(len(commands_data)):
         t_l = []
         for j in range(len(commands_data[i][3])):
-            if commands_data[i][3][j] != -1:
-                if not (j in t_l):
-                    k_l = []
-                    for k in range(j, len(commands_data[i][3])):
-                        if commands_data[i][3][k] == commands_data[i][3][j]:
-                            t_l.append(k)
-                            k_l.append(k)
-                    if len(k_l) == 1:
-                        t = commands_data[i][3][j]
+            if not (j in t_l):
+                k_l = []
+                for k in range(j, len(commands_data[i][3])):
+                    if commands_data[i][3][k] == commands_data[i][3][j]:
+                        t_l.append(k)
+                        k_l.append(k)
+                if len(k_l) == 1:
+                    t = commands_data[i][3][j]
+                    if t != -1:
                         text += "\t" + str(i) + " -> " + str(t)
-                        if commands_data[i][0] in commands_transitions_names:
-                            text += '[label="' + commands_transitions_names[commands_data[i][0]][0]
-                            text += commands_transitions_names[commands_data[i][0]][j + 1]
-                            text += '"];\n'
                     else:
-                        t_count = 1 if not (commands_data[i][0] in count_transitions) else count_transitions[commands_data[i][0]]
-                        if len(k_l) == t_count:
-                            t = commands_data[i][3][j]
-                            text += "\t" + str(i) + " -> " + str(t) + '[label="Всегда"];\n'
-                        else:
-                            t = commands_data[i][3][j]
-                            text += "\t" + str(i) + " -> " + str(t) + '[label="'
-                            text += commands_transitions_names[commands_data[i][0]][0]#"если"
-                            for h in range(len(k_l)):
-                                text += commands_transitions_names[commands_data[i][0]][k_l[h] + 1]
-                                if h < len(k_l) - 2:
-                                    text += ", "
-                                elif h < len(k_l) - 1:
-                                    text += " или "
-                            text += '"];\n'
-            else:
-                inf_counter += 1
-                text += "\t" + str(i) + " -> inf" + str(inf_counter)
+                        inf_counter += 1
+                        text += "\t" + str(i) + " -> inf" + str(inf_counter)
+                    if commands_data[i][0] in commands_transitions_names:
+                        text += '[label="' + commands_transitions_names[commands_data[i][0]][0]
+                        text += commands_transitions_names[commands_data[i][0]][j + 1]
+                        text += '"];\n'
+                else:
+                    t_count = 1 if not (commands_data[i][0] in count_transitions) else count_transitions[commands_data[i][0]]
+                    #
+                    t = commands_data[i][3][j]
+                    if t != -1:
+                        text += "\t" + str(i) + " -> " + str(t)
+                    else:
+                        inf_counter += 1
+                        text += "\t" + str(i) + " -> inf" + str(inf_counter)
+                    if len(k_l) == t_count:
+                        text += '[label="Всегда"];\n'
+                    else:
+                        t = commands_data[i][3][j]
+                        text += '[label="'
+                        text += commands_transitions_names[commands_data[i][0]][0]#"если"
+                        for h in range(len(k_l)):
+                            text += commands_transitions_names[commands_data[i][0]][k_l[h] + 1]
+                            if h < len(k_l) - 2:
+                                text += ", "
+                            elif h < len(k_l) - 1:
+                                 text += " или "
+                        text += '"];\n'
         if text[-1] != "\n":
             text += "\n\t//\n"
         else:
